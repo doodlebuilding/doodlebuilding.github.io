@@ -136,7 +136,7 @@
             }, !1), document.addEventListener("touchmove", t => {
                 u.touchMoveListener(t)
             }, !1)) : (document.addEventListener("mousedown", t => {
-                u.touchStartListener(t)
+                u.touchStartListener(t);
             }, !1), document.addEventListener("mouseup", t => {
                 u.touchEndListener(t)
             }, !1), document.addEventListener("mousemove", t => {
@@ -922,6 +922,15 @@
                     y: .11 * t.width,
                     textAlign: "right"
                 });
+                /*
+                var s1 = t.getImg("down-btn"),
+                    n1 = s1.width,
+                    o1 = s1.height,
+                    h1 = .35 * t.width,
+                    c1 = o1 * h1 / n1;
+                t.ctx.drawImage(s1, .50 *t.width-(.50*n1), .70 * t.height, h1, c1);
+                */
+
                 for (var d = t.ctx, u = t.getImg("heart"), l = u.width, g = u.height, m = .08 * t.width, b = g * m / l, f = 1; f <= 3; f += 1) d.save(), f <= i && (d.globalAlpha = .2), d.drawImage(u, .66 * t.width + (f - 1) * m, .16 * t.width, m, b), d.restore()
             }
         },
