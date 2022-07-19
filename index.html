@@ -1,161 +1,60 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"><title>Tower Building</title><link rel="icon" type="image/x-icon" href=""><link rel="stylesheet" href="css/main.css">
-  </head><body><canvas id="canvas" class="hide"></canvas><div class="content"><div class="loading"><div class="main"><img src="./assets/main-loading.png"><div class="progress"><div class="title">0%</div><div class="bar"><div class="sub"><div class="percent"></div></div></div><div class="text">Loading...</div></div></div></div><div class="landing hide"><div class="action-1"><img src="./assets/main-index-title.png" class="title swing"></div><div class="action-2"><img id="start" src="./assets/main-index-start.png" class="start"></div></div>
-    <div id="modal" class="modal hide">
-    <div class="mask">  
-    </div>
-    <div class="js-modal-content modal-content">
-      <div class="main"><div class="container">
-        <img src="./assets/main-modal-bg.png" class="bg">
-        <div class="modal-main">
-          <div id="over-modal" class="hide js-modal-card">
-
-            <div class="ad" id="" src="" style="background: #eee; width:80%; height:50px; margin:.6rem auto 0">
-              <ins class="kakao_ad_area" style="display:none;" 
-               data-ad-unit    = "DAN-T3x8NHPT3MW9faEQ" 
-               data-ad-width   = "320" 
-               data-ad-height  = "50"></ins> 
-              <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-            </div>
-
-            <img src="./assets/main-modal-over.png" class="over-img">
-            <div id="score" class="over-score"></div>
-            <div id="over-zero" class="hide">
-              <div class="tip">
-                <p></p>
-              <img src="./assets/main-modal-again-b.png" class="over-button-b js-reload">
-              </div> 
-            </div>
+<html>
+<head>
+      <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+      <title>doodle building</title>
 
 
-            
-          </div>
-        </div>
-      </div>
-    </div></div></div></div><script src="./dist/main.js"></script>
-  <script src="./assets/zepto-1.1.6.min.js"></script>
-  <script>var domReady, loadFinish, canvasReady, loadError, gameStart, game, score, successCount
-  // init window height and width
-  var gameWidth = window.innerWidth
-  var gameHeight = window.innerHeight
-  var ratio = 1.5
-  if (gameHeight / gameWidth < ratio) {
-    gameWidth = Math.ceil(gameHeight / ratio)
-  }
-  $('.content').css({ "height": gameHeight + "px", "width": gameWidth + "px" })
-  $('.js-modal-content').css({ "width": gameWidth + "px" })
+      <style type="text/css">
 
-  // loading animation
-  function hideLoading() {
-    if (domReady && canvasReady) {
-      $('#canvas').show()
-      loadFinish = true
-      setTimeout(function () {
-        $('.loading').hide()
-        $('.landing').show()
-      }, 1000)
-    }
-  }
+            body{
+                  margin: 0px;
+                  padding: 0px;
+            }
 
-  function updateLoading(status) {
-    var success = status.success
-    var total = status.total
-    var failed = status.failed
-    if (failed > 0 && !loadError) {
-      loadError = true
-      alert('Network error... Please try again.')
-      return
-    }
-    var percent = parseInt((success / total) * 100);
-    if (percent === 100 && !canvasReady) {
-      canvasReady = true
-      hideLoading()
-    }
-    percent = percent > 98 ? 98 : percent
-    percent = percent + '%'
-    $('.loading .title').text(percent);
-    $('.loading .percent').css({
-      'width': percent
-    })
-  }
+            .bottom{
+                  width: 100%;
+                  height: 100px;
+                  background-image:url("assets/main-bg.png");
+                  background-repeat: repeat;
+            }
 
-  function overShowOver() {
-    $('#modal').show()
-    $('#over-modal').show()
-    $('#over-zero').show()
-  }
+            .ad{
+                  width: 100%;
+                  height: 50px;
+                  margin: 0px;
+                  padding: 0px;
+                  border: 0px;
+            }
 
-  // game customization options
-  const option = {
-    width: gameWidth,
-    height: gameHeight,
-    canvasId: 'canvas',
-    soundOn: true,
-    setGameScore: function (s) {
-      score = s
-    },
-    setGameSuccess: function (s) {
-      successCount = s
-    },
-    setGameFailed: function (f) {
-      $('#score').text(score)
-      if (f >= 3) overShowOver()
-    }
-  }
+            .box{
+                  margin:0 auto;
+                  top:0px;
+                  padding:0px;
+                  width: 100%;
+                  height: calc(100% - 50px);
+                  border: 0px;
+            }
 
-  // game init with option
-  function gameReady() {
-    game = TowerGame(option)
-    game.load(function () {
-      game.init()
-      setTimeout(function () {
-        //game.playBgm()
-      })
-    }, updateLoading)
-  }
+      </style>
+</head>
 
-  //var isWechat = navigator.userAgent.toLowerCase().indexOf("micromessenger") !== -1
-  //if (isWechat) {
-  //  document.addEventListener("WeixinJSBridgeReady", gameReady, false)
-  //} else {
-    gameReady()
-  //}
 
-  function indexHide() {
-    $('.landing .action-1').addClass('slideTop')
-    $('.landing .action-2').addClass('slideBottom')
-    setTimeout(function () {
-      $('.landing').hide()
-    }, 950)
-  }
+<body>
 
-  // click event
-  $('#start').on('click', function () {
-    if (gameStart) return
-    gameStart = true
-    setTimeout(function () {
-      //game.playBgm()
-    })
-    indexHide()
-    setTimeout(game.start, 400)
-  })
+<div class="bottom">
+<div class="ad" id="" src="">
+<ins class="kakao_ad_area" style="display:none;" 
+ data-ad-unit    = "DAN-T3x8NHPT3MW9faEQ" 
+ data-ad-width   = "320" 
+ data-ad-height  = "50"></ins> 
+<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+</div>
+</div>
 
-  $('.js-reload').on('click', function () {
-    window.location.href = window.location.href + '?s=' + (+new Date())
-  })
+<iframe class="box" id="" src="main.html"></iframe>
 
-  $('.js-invite').on('click', function () {
-    $('.wxShare').show()
-  })
 
-  $('.wxShare').on('click', function () {
-    $('.wxShare').hide()
-  })
+</div>
 
-  // listener
-  window.addEventListener('load', function () {
-    domReady = true
-    hideLoading()
-  }, false);
-</script>
-
-</body></html>
+</body>
+</html>
